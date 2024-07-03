@@ -7,7 +7,7 @@ DocMeta.setdocmeta!(QModExp, :DocTestSetup, :(using QModExp); recursive=true)
 bib = CitationBibliography(joinpath(@__DIR__,"src/reference.bib"),style=:authoryear)
 
 makedocs(;
-    plugin = [bib],
+    plugins = [bib],
     modules=[QModExp],
     authors="Yusheng Zhao <yushengzhao2020@outlook.com> and contributors",
     sitename="QModExp.jl",
