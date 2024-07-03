@@ -9,6 +9,3 @@ Documentation for [QModExp](https://github.com/exAClior/QModExp.jl).
 ```@index
 ```
 
-```@autodocs
-Modules = [QModExp]
-```
