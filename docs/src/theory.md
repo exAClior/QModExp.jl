@@ -13,12 +13,23 @@ controlled non-modular adder uses $4n$ Toffoli gates. Here $n$ is the number of
 qubits used to represent a number. We may reduce the cost of addition if we
 could use non-modular addition circuit to mimic the effect of modular adder.
 
+!!! note "Rough Sektch of Modular Addition" 
+    In the VBE[^3] paper, a modular addition was implemented. In order to
+    compute $(a+b)%N$, you would first need to compte put in register $A$ $a+b$,
+    then you compare is $a+b > N$ and put the result in a ctrl qubit. You would
+    then use the control qubit to conditionally subtract $N$ from register $A$.
+    Lastly, you will need to clear out the control bit with the comparison
+    result of regiter $A$ with another register $B$ holding the result of $a+b$.
+    
+
+
 This is achieved by choosing to encode an integer $k$(mod $N$) as quantum state
 $\sqrt{2^{-c_{pad}}} \sum_{j=0}^{2^{c_{pad}} -1} \ket{jN+k}$ here $c_{pad}$ is
 the number of qubits padded with the high-order qubits.
 
-    !!! warning "Order of Qubits"
-        Please be aware of endianess of qubits. Craig seems to be using large endianess where high order qubits are placed at the end
+!!! warning "Order of Qubits"
+    Please be aware of endianess of qubits. Craig seems to be using 
+    large endianess where high order qubits are placed at the end
         
 The number of padding needed scales logarithmically with how well the end result
 approximates the modular result.
@@ -34,8 +45,9 @@ $\ket{k'} = ... + \ket{k+y-N} + \ket{k+y} + \ket{k+y+N} + ...$ When the padding
 is long enough, the two sums both become very long and they overlap more and
 more.
 
-Need to write a test later.
+More references could be found in section 4 in [^2].
 
 
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
+[^3]: [vedral1996quantum](@cite)

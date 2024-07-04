@@ -2,5 +2,5 @@ using QModExp
 using Test
 
 @testset "QModExp.jl" begin
-    # Write your tests here.
+    include("coset.jl")
 end

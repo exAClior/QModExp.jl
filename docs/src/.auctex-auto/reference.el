@@ -3,6 +3,7 @@
  (lambda ()
    (LaTeX-add-bibitems
     "gidney2021factor"
-    "zalka2006shor"))
+    "zalka2006shor"
+    "vedral1996quantum"))
  '(or :bibtex :latex))
 
