@@ -22,7 +22,6 @@ could use non-modular addition circuit to mimic the effect of modular adder.
     result of regiter $A$ with another register $B$ holding the result of $a+b$.
     
 
-
 This is achieved by choosing to encode an integer $k$(mod $N$) as quantum state
 $\sqrt{2^{-c_{pad}}} \sum_{j=0}^{2^{c_{pad}} -1} \ket{jN+k}$ here $c_{pad}$ is
 the number of qubits padded with the high-order qubits.
@@ -45,8 +44,20 @@ $\ket{k'} = ... + \ket{k+y-N} + \ket{k+y} + \ket{k+y+N} + ...$ When the padding
 is long enough, the two sums both become very long and they overlap more and
 more.
 
-More references could be found in section 4 in [^2].
+More references including the circuit design for encoding $k$ into the coset
+form could be found in section 4 in [^2].
 
+## Windowed Arithmetic
+
+A windowed arithmetic is algorithm that merges operations into lookup tables
+that saves computation. 
+
+A lookup table is ....
+
+
+It is motivated by the fact that classical computation is much less expensive
+than quantum ones. Therefore, it makes sense to precompute things on the
+classical machine and then query in with quantum circuit whenever needed.
 
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
