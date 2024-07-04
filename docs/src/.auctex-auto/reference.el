@@ -4,6 +4,7 @@
    (LaTeX-add-bibitems
     "gidney2021factor"
     "zalka2006shor"
-    "vedral1996quantum"))
+    "vedral1996quantum"
+    "gidney2019approximate"))
  '(or :bibtex :latex))
 

@@ -7,11 +7,15 @@ using Test, QModExp
     b = 91
     a_plus_b_mod = (a + b) % N
 
+    c_pad = 1
     for c_pad in 1:10
         kets_a = to_coset(a, N, c_pad)
         kets_a_plus_b_mod = to_coset(a_plus_b_mod, N, c_pad)
         kets_a_plus_b = kets_a .+ b
 
+        @show kets_a
+        @show kets_a_plus_b_mod
+        @show kets_a_plus_b
         state_overlap = intersect(kets_a_plus_b, kets_a_plus_b_mod)
 
         state_fidelity = length(state_overlap) / length(kets_a)
