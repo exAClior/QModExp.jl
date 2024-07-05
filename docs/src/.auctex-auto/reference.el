@@ -7,6 +7,8 @@
     "vedral1996quantum"
     "gidney2019approximate"
     "cuccaro2004new"
-    "cryptoeprint:2016/1128"))
+    "cryptoeprint:2016/1128"
+    "Babbush2018Encoding"
+    "gidney2019windowed"))
  '(or :bibtex :latex))
 

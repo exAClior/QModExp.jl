@@ -69,6 +69,8 @@ The unconventional control part of the circuit denotes the following.
 
 ![Lookup circuit convention](lookupcircuit_convention.png)
 
+A more systematic explaination of this notation is given in Figure 4 and 6 of [^7].
+
 Take the first control gate for example, the hollow circle means anti-control,
 the second solid circle means control and there is an implicit not gate acted
 upon the third line. The qubit on the third line is initialized to be in
@@ -163,7 +165,7 @@ Gidney provided a reference implementation.
 In total, we need $n_e \cdot 2n \cdot 5 \cdot 2n = 20 n_e n^2$
 Toffoli gates.
 
-### Saving from Coset Representation
+## Saving from Coset Representation
 
 In the reference, the modular addition costs $5 \cdot 2n$ Toffoli gates. Using the coset representation, 
 
@@ -188,8 +190,18 @@ representation encoding and extra qubits used in the representation and extra
 cost of Toffoli they bought in.
 
 
-### Windowed Arithmetic
+## Saving from Windowed Arithmetic
 
+We will investigate the cost saving of windowed arithmetic.
+
+### Table Lookup
+We first compare the cost saving of a table lookup. Let's assume that classical
+computation of the table have negligible cost. In effect, computing the 
+
+Naively, each table lookup has cost documented in section 2 of [^8]. If we would
+like to store $L = 2^a$ entries of $g^1$ to $g^a$ on $W$ qubits, the number of
+Toffoli gates are $L-1$ as indicated in the figure above. However, recomputation
+requires measurement.
 
 # Error Analysis
 
@@ -200,9 +212,16 @@ see that they are just stagger superposition of computational basis and the
 difference is at most $1$ basis state. Therefore, the infidelity scales as
 $1/x_{max}$.
 
+
+## Windowed Arithmetic
+
+WHat is the probability that we will have logical error during the computation?
+
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
 [^3]: [vedral1996quantum](@cite)
 [^4]: [gidney2019approximate](@cite)
 [^5]: [cuccaro2004new](@cite)
 [^6]: [cryptoeprint:2016/1128](@cite)
+[^7]: [Babbush2018Encoding](@cite)
+[^8]: [gidney2019windowed](@cite)
