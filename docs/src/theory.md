@@ -163,11 +163,28 @@ Gidney provided a reference implementation.
 In total, we need $n_e \cdot 2n \cdot 5 \cdot 2n = 20 n_e n^2$
 Toffoli gates.
 
-## 
+### Saving from Coset Representation
+
+In the reference, the modular addition costs $5 \cdot 2n$ Toffoli gates. Using the coset representation, 
+
+Firstly, we have to convert the number into coset representation 
+
+$$\text{Prepare} \quad \frac{1}{\sqrt{x_{\max }}} \sum_{x=0}^{x_{\max }-1}|x\rangle, \quad \text { then do } \quad|b\rangle|x\rangle \rightarrow \quad|b+x N\rangle$$
+
+This steps costs $2n$ Toffoli gates because 
+
+Secondly, there is an algorithm that does the non-modular addition with
+$4n+\mathcal{O}(1)$ Toffoli gates [^5].
+
+Overall, Gidney reports that the controlled modulo addition on computational
+basis representation takes $\mathcal{O}(10n)$ Toffoli gates and
+$\mathcal{O}(4n)$.
+
+However, we note that this estimate did not take into the consideration of coset
+representation encoding and extra qubits used in the representation.
 
 
-The controlled modulo addition on computational basis representation takes
-$\mathcal{O}(10n)$ Toffoli gates and $\mathcal{O}(4n)$
+### Windowed Arithmetic
 
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
