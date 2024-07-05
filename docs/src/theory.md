@@ -48,6 +48,7 @@ More references including the circuit design for encoding $k$ into the coset
 form could be found in section 4 in [^2]. More families of such approximate
 encoding scheme can be found in section 3 of [^4].
 
+
 ## Windowed Arithmetic
 
 A windowed arithmetic is algorithm that merges operations into lookup tables
@@ -120,7 +121,57 @@ carrying all the way to the last bit. Therefore, it may break down the addition
 into pieces. The carry of each section is thrown away? (What about the decoherence created this way?)
 
 
+# Performance
+
+Regarding the performance, the most worrying parameter for an algorithm is the
+number of Toffoli gates. The choice was made because for Gidney, Toffoli is more
+costly than CNOT due to the cost of non-transversal T gate required. We
+following this stream of thought but do note it might change based on the error
+correction code you choose.
+
+!!! warning "Slight Modification of Shor's Algorithm" 
+    Gidney's paper uses an improved version of Shor's algorithm due to paper
+    [^6]. It decrease the number of multiplication
+
+## Reference
+
+Gidney provided a reference implementation. 
+
+1. The modified Shor's algorithm requires the usage of $n_e$ such controlled
+   multiplication. where $n_e = 1.5 \cdot n + \mathcal{O}$ and $n = \lceil
+   \log_{2} N \rceil$ and $N$ is the number being factored. It is expressed in
+   the form of a series of multiplication that does the mapping $x \rightarrow x
+   \cdot g^{2^j}$.
+2. Each controlled multiplication is then decomposed to $2n$ controlled
+   additions of the form $y += x \cdot k %N$ and $x += y\cdot (-k^{-1})$. The
+   $2$ stands for each of the two additions. (We need $x$ along the way of
+   multiplication, cannot do it inplace). The $n$ here stands for each $x \cdot
+   k$ is done with $n$ addition of the form $y += x \cdot 2^{i} \cdot k_i$.
+3. He considered using [^5] method of doing uncontrolled and non-modulo
+   addition. This costs $\mathcal{O}(2n)$ Toffoli gates.
+4. Using VBE's [^3] construction, we need $5$ such adder to perform a modulo
+   addition. In Figure 5 of [^5], we were shown how to do controlled
+   multiplication. The blank register denotes the place where you either copy
+   $2^j \cdot x_j$ or leave it blank. This fascillates the controlled addition.
+
+![Controlled Multiplication](controlled_multiplication.png)
+
+!!! note "Ancilla Used"
+    Do note the $\mathcal{O}(1)$ amount of ancilla used during the computation.
+    
+
+In total, we need $n_e \cdot 2n \cdot 5 \cdot 2n = 20 n_e n^2$
+Toffoli gates.
+
+## 
+
+
+The controlled modulo addition on computational basis representation takes
+$\mathcal{O}(10n)$ Toffoli gates and $\mathcal{O}(4n)$
+
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
 [^3]: [vedral1996quantum](@cite)
 [^4]: [gidney2019approximate](@cite)
+[^5]: [cuccaro2004new](@cite)
+[^6]: [cryptoeprint:2016/1128](@cite)
