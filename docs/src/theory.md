@@ -169,9 +169,12 @@ In the reference, the modular addition costs $5 \cdot 2n$ Toffoli gates. Using t
 
 Firstly, we have to convert the number into coset representation 
 
-$$\text{Prepare} \quad \frac{1}{\sqrt{x_{\max }}} \sum_{x=0}^{x_{\max }-1}|x\rangle, \quad \text { then do } \quad|b\rangle|x\rangle \rightarrow \quad|b+x N\rangle$$
+$$\text{Prepare} \quad \frac{1}{\sqrt{x_{\max }}} \sum_{x=0}^{x_{\max
+}-1}|x\rangle, \quad \text { then do } \quad|b\rangle|x\rangle \rightarrow
+\quad|b+x N\rangle$$
 
-This steps costs $2n$ Toffoli gates because 
+This steps costs $2n^2$ Toffoli gates because we have to do controlled addition
+of the form $2^j * x_{j} * N$ for $n$ times.
 
 Secondly, there is an algorithm that does the non-modular addition with
 $4n+\mathcal{O}(1)$ Toffoli gates [^5].
@@ -181,10 +184,21 @@ basis representation takes $\mathcal{O}(10n)$ Toffoli gates and
 $\mathcal{O}(4n)$.
 
 However, we note that this estimate did not take into the consideration of coset
-representation encoding and extra qubits used in the representation.
+representation encoding and extra qubits used in the representation and extra
+cost of Toffoli they bought in.
 
 
 ### Windowed Arithmetic
+
+
+# Error Analysis
+
+## Coset Representation
+Comparing the representation of non-modular addition result in coset
+representation and modular addition then converted to coset representation, we
+see that they are just stagger superposition of computational basis and the
+difference is at most $1$ basis state. Therefore, the infidelity scales as
+$1/x_{max}$.
 
 [^1]: [gidney2021factor](@cite)
 [^2]: [zalka2006shor](@cite)
