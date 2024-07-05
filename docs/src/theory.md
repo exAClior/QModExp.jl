@@ -203,6 +203,24 @@ like to store $L = 2^a$ entries of $g^1$ to $g^a$ on $W$ qubits, the number of
 Toffoli gates are $L-1$ as indicated in the figure above. However, recomputation
 requires measurement.
 
+A less naive approach costs $\mathcal{O}(WL/k + k)$ Toffoli gates with
+$\mathcal{O}(Wk)$ ancilleas. This optimization will not be taken because we
+consider the case where $W$ is large and this optimization does not take effect
+in that regime.
+
+### Window Arithmetic
+
+The window technique first reduces $n_e$ controlled multiplication to $n_e /
+c_{exp}$ un-controlled multiplication. (Not sure why it is un-controlled$.
+
+Each uncontrolled multiplication requires $2n$ controlled addition. And it is
+achievable with $2n/c_{mul}$ number of addition. $c_{mul}$ means the number of
+digits added at once.
+
+### Combined 
+In combination, we will need $\frac{2 n_e n}{c_{mul}c_{exp}} (2n + 2^{c_{mul} +
+c_{exp}})$ Toffoli gates [^1]. And the ancilla qubits are ...
+
 # Error Analysis
 
 ## Coset Representation
