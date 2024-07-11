@@ -22,7 +22,7 @@ could use non-modular addition circuit to mimic the effect of modular adder.
     result of regiter $A$ with another register $B$ holding the result of $a+b$.
     
 
-This is achieved by choosing to encode an integer $k$(mod $N$) as quantum state
+This is achieved by choosing to encode an integer $k$ (mod $N$) as quantum state
 $\sqrt{2^{-c_{pad}}} \sum_{j=0}^{2^{c_{pad}} -1} \ket{jN+k}$ here $c_{pad}$ is
 the number of qubits padded with the high-order qubits.
 
@@ -182,8 +182,7 @@ Secondly, there is an algorithm that does the non-modular addition with
 $4n+\mathcal{O}(1)$ Toffoli gates [^5].
 
 Overall, Gidney reports that the controlled modulo addition on computational
-basis representation takes $\mathcal{O}(10n)$ Toffoli gates and
-$\mathcal{O}(4n)$.
+basis representation takes $\mathcal{O}(4n)$ Toffoli gates.
 
 However, we note that this estimate did not take into the consideration of coset
 representation encoding and extra qubits used in the representation and extra
